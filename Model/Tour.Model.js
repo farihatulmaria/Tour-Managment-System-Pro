@@ -28,24 +28,8 @@ const tourSchema = mongoose.Schema({
       required:[true,"The company needs to track the users view"],
       min: [0,"views can't be negative"]
     }
-    /* createdAt: {
-      type: Date,
-      default: Date.now,
-    },
-    updatedAt: {
-      type: Date,
-      detfault: Date.now
-    } */
+ 
 })
-
-tourSchema.pre("save",function(next){
-    console.log("before saving data".bgGreen.bold);
-    if(this.quantity == 0){
-      this.status = "out-of-stock"
-    } 
-    // adding some functionality to the products data before saving it to the database
-    next();
-  })
   
 
 tourSchema.methods.logger = function(){
@@ -56,17 +40,3 @@ const Tour = mongoose.model("Tour",tourSchema)
 
 module.exports = Tour;
 
-
-/* 
-image:{
-  type:String,
-  required:[true,"The tour place should have a image to look at"]
-}, 
-status: {
-  type: String,
-  required: true,
-  enum: {
-    values: ["in-stock", "out-of-stock", "discontinued"],
-    message: "status can't be {VALUE}",
-  },
-}, */
